@@ -6,12 +6,14 @@
 export function createGetter(path) {
 	if (typeof path !== 'string') {
 		console.error("/'path/' is not a string." )
-		return 0;
+		return;
 	}
 
 	const chain = String(path).split('.');
 
 	return function f(obj) {
+		if (obj === undefined)
+			return;
 		if (chain.length !== 0) {
 			return f(obj[chain.shift()]);
 		} else {

@@ -9,15 +9,16 @@ export function createGetter(path) {
 		return;
 	}
 
-	const chain = String(path).split('.');
+	const chain = path.split('.');
 
-	return function f(obj) {
-		if (obj === undefined)
-			return;
-		if (chain.length !== 0) {
-			return f(obj[chain.shift()]);
-		} else {
-			return obj;
+	return function (obj) {
+		let result = obj;
+		for (const step of chain) {
+			if (result === undefined)
+				return;
+			result = result[step];
 		}
+		return result;
 	}
 }
+

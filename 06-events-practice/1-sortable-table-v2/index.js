@@ -1,4 +1,3 @@
-//не успевает за тестом
 export default class SortableTable {
   element;
   subElements;
@@ -41,10 +40,14 @@ export default class SortableTable {
             </div>
         `;
   }
-//**********************************************************************************************************************
+
   initListeners() {
     document.addEventListener('pointerdown', this.onMouseClick);
   }
+
+  //******************************************************************************************************************
+  // listeners
+  //******************************************************************************************************************
 
   onMouseClick = event => {
     const headerCell = event.target.closest('.sortable-table__cell');
